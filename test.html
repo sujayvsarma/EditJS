@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <title>Edit.js Test Page</title>
+        <meta name="description" value="A test page for Edit.js system" />
+
+        <link rel="stylesheet" type="text/css" href="dependencies/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="dependencies/dropzone/dropzonejs.min.css" />
+        <link rel="stylesheet" type="text/css" href="dependencies/fontawesome/fontawesome.min.css" />
+        <style type="text/css">
+            .fa { margin-right: 5px; }
+        </style>
+    </head>
+    <body>
+
+        <form method="POST" action="submitscript.php" mode="editjs">
+            <div class="card mt-3">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Test form</h3>
+                </div>
+                <div class="card-body small">
+                    <div class="table w-100">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="ctlName">Name</label>
+                                <editjs id="ctlName" editor="text" edit-class="form-control small" edit-maxlength="25" value="Sujay Sarma"></editjs>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlAgreement">Agreement</label>
+                                <editjs id="ctlAgreement" editor="checkbox" edit-class="form-control small" value="yes" label="Agreement accepted" ></editjs>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlGender">Gender</label>
+                                <editjs id="ctlGender" list="GenderChoices" editor="radio" edit-class="form-control small" value="M"></editjs>
+                                <datalist id="GenderChoices">
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Other</option>
+                                </datalist>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlCountry">Country</label>
+                                <editjs id="ctlCountry" list="CountryList" editor="dropdown" allow-multiple="false" edit-class="form-control small" value="IN"></editjs>
+                                <datalist id="CountryList">
+                                    <optgroup label="Asia">
+                                        <option value="IN">India</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="BN">Bangladesh</option>
+                                        <option value="SL">Sri Lanka</option>
+                                        <option value="NP">Nepal</option>
+                                        <option value="SG">Singapore</option>
+                                    </optgroup>
+                                    <optgroup label="North America">
+                                        <option value="US">United States of America (USA)</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="CA">Canada</option>
+                                    </optgroup>
+                                    <optgroup label="Europe">
+                                        <option value="UK">United Kingdom (UK)</option>
+                                        <option value="FR">French</option>
+                                        <option value="IT">Italy</option>
+                                    </optgroup>
+                                </datalist>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlHobbies">Your hobbies</label>
+                                <editjs id="ctlHobbies" list="HobbiesList" editor="dropdown" allow-multiple="true" edit-class="form-control small" value="IN"></editjs>
+                                <datalist id="HobbiesList">
+                                    <optgroup label="Asia">
+                                        <option value="IN">India</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="BN">Bangladesh</option>
+                                        <option value="SL">Sri Lanka</option>
+                                        <option value="NP">Nepal</option>
+                                        <option value="SG">Singapore</option>
+                                    </optgroup>
+                                    <optgroup label="North America">
+                                        <option value="US">United States of America (USA)</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="CA">Canada</option>
+                                    </optgroup>
+                                    <optgroup label="Europe">
+                                        <option value="UK">United Kingdom (UK)</option>
+                                        <option value="FR">French</option>
+                                        <option value="IT">Italy</option>
+                                    </optgroup>
+                                </datalist>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlPhoto">Upload your photograph</label>
+                                <editjs id="ctlPhoto" editor="upload" type="image" maxfiles="1" accept-types="image/png,image/jpg,image/jpeg" 
+                                    accept-maxsize="5" use-dropzonejs="true" popupform-id="photoUploadDialog" popupform-formid="photoUploadDropZone" ajax-upload-formfieldname="photoFileData"
+                                        value="/uploads/pic.jpg"></editjs>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="ctlResume">Your resume</label>
+                                <editjs id="ctlResume" editor="upload" type="misc" maxfiles="1" 
+                                    accept-maxsize="50" use-dropzonejs="false" 
+                                        value="/uploads/doc1.pdf"></editjs>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary text-white">Submit form</button>
+                </div>
+            </div>            
+        </form>
+        
+        <div id="photoUploadDialog" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="width: 640px; height: 200px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="fa fa-file-import"></i>Upload a new photograph</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body small">
+                        <p>
+                            Upload a new photograph from your computer (in PNG or JPG formats) that will be used on your profile. This picture will be 
+                            shown to other users when you are included in their search results.
+                        </p>
+                        <p>
+                            <strong>NOTE:</strong> After you drop or select a file in the area below, you will see a <i class="fa fa-check-square"></i> mark appear on the
+                            file. At this point, you may safely close this dialog and return to the screen.
+                        </p>
+                        <form method="post" action="https://sujaysarma-mockapi.azure-api.net/upload" enctype="multipart/form-data" class="dropzone" id="photoUploadDropZone">
+                            <div class="fallback">
+                                <p>
+                                    <label for="photoFileData">Select your photograph:</label>
+                                    <input type="file" class="form-control-file" style="height: 80px; width: 100%; border: dotted 1px #cccccc; vertical-align: middle; text-align: center;"
+                                           name="photoFileData" id="photoFileData" dropzone="true" />
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer text-right">
+                        <button type="button" class="btn btn-info border-dark text-white font-weight-bold" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Early common dependencies for other scripts -->
+        <script type="text/javascript" src="dependencies/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="dependencies/popper/popper.min.js"></script>
+
+        <!-- DropZone is only required if you require drag-drop upload of files or images -->
+        <script type="text/javascript" src="dependencies/dropzone/dropzone.min.js"></script>
+
+        <!-- This should be the last one in the list -->
+        <script type="text/javascript" src="dependencies/bootstrap/bootstrap.min.js"></script>
+
+        <!-- This should be hte last one -->
+        <script type="text/javascript" src="scripts/sujaysarma.editjs.js"></script>
+    </body>
+</html>
